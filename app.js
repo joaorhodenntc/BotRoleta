@@ -38,21 +38,21 @@ const chatId = '2095687147';
           }
         }
   
-          if(consecutivePar === 3){
+          if(consecutivePar === 5){
               firstNum = lista[0];
               if(firstNum % 2!==0){
                 greens++
                 bot.sendMessage(chatId, "GREEN SG ✅ (" + firstNum +")\n"+greens+" x "+reds);
               } 
           }
-          if(consecutivePar === 4){
+          if(consecutivePar === 6){
             secondNum = lista[0];
             if(secondNum % 2!==0){
               greens++;
               bot.sendMessage(chatId, "GREEN G1 ✅ (" + firstNum +" | " + secondNum +")\n"+greens+" x "+reds);
             }
           }
-          if(consecutivePar === 5){
+          if(consecutivePar === 7){
             const threeNum = lista[0];
             if(threeNum % 2!==0){
               greens++
@@ -62,21 +62,21 @@ const chatId = '2095687147';
               bot.sendMessage(chatId,"RED 🔻(" + firstNum +" | " + secondNum +" | " + threeNum +")\n"+greens+" x "+reds);
             }
           }
-          if(consecutiveImpar === 3){
+          if(consecutiveImpar === 5){
             firstNum = lista[0];
             if(firstNum % 2===0){
               greens++
               bot.sendMessage(chatId, "GREEN SG ✅ (" + firstNum +")\n"+greens+" x "+reds);
             } 
         }
-        if(consecutiveImpar === 4){
+        if(consecutiveImpar === 6){
           secondNum = lista[0];
           if(secondNum % 2===0){
             greens++;
             bot.sendMessage(chatId, "GREEN G1 ✅ (" + firstNum +" | " + secondNum +")\n"+greens+" x "+reds);
           }
         }
-        if(consecutiveImpar === 5){
+        if(consecutiveImpar === 7){
           const threeNum = lista[0];
           if(threeNum % 2===0){
             greens++
@@ -91,13 +91,13 @@ const chatId = '2095687147';
             consecutiveImpar =0;
             console.log(lista[0] + " - par");
             console.log("Pares consecutivos: " + consecutivePar);
-            if(consecutivePar === 2 ){
+            if(consecutivePar === 4 ){
               let message = "🚨Atentos possivel entrada";
               bot.sendMessage(chatId, message).then(msg => {
                   alertMessageId = msg.message_id;
               });
           }
-            if(consecutivePar === 3 ){
+            if(consecutivePar === 5 ){
                 let message = "*🇧🇷 ENTRADA CONFIRMADA 🇧🇷\n\n💻 Roleta:  ROLETA BRASILEIRA\n🔥 Entrada nos números ímpares\n🛟 Fazer até 2 proteções!\n\n🧨 Último número: " + lista[0] +"*"
                 bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
             }
@@ -106,13 +106,13 @@ const chatId = '2095687147';
             consecutivePar=0;
             console.log(lista[0] + " - ímpar");
             console.log("Ímpares consecutivos: " + consecutiveImpar);
-            if(consecutiveImpar === 2 ){
+            if(consecutiveImpar === 4 ){
               let message = "🚨Atentos possivel entrada";
               bot.sendMessage(chatId, message).then(msg => {
                   alertMessageId = msg.message_id;
               });
           }
-            if(consecutiveImpar === 3 ){
+            if(consecutiveImpar === 5 ){
                 let message = "*🇧🇷 ENTRADA CONFIRMADA 🇧🇷\n\n💻 Roleta:  ROLETA BRASILEIRA\n🔥 Entrada nos números pares\n🛟 Fazer até 2 proteções!\n\n🧨 Último número: " + lista[0] +"*"
                 bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
             }
