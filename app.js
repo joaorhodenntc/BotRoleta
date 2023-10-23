@@ -10,15 +10,26 @@ const chatId = '2095687147';
   page.on('load', async () => {
     let consecutivePar = 0;
     let consecutiveImpar = 0;
+    let greens = 0;
+    let reds = 0;
     let firstNum = null;
     let secondNum = null;
     let alertMessageId = null;
     let lista = [];
 
     while (true) {
+      const agora = new Date(); // Obtém a data e hora atual do sistema
+      const horaAtual = agora.getHours(); // Obtém a hora atual
+      const minutos = agora.getMinutes();
+      
       let novaLista = await atualizaLista(page);
       if (!listasIguais(lista, novaLista)) {
         lista = novaLista;
+
+        if (horaAtual === 0 && minutos === 0) {
+          greens = 0; 
+          reds = 0;
+        }
 
         if(consecutivePar === 0 || consecutiveImpar === 0){
           if(alertMessageId){
@@ -30,41 +41,49 @@ const chatId = '2095687147';
           if(consecutivePar === 3){
               firstNum = lista[0];
               if(firstNum % 2!==0){
-                bot.sendMessage(chatId, "GREEN SG ✅ (" + firstNum +")");
+                greens++
+                bot.sendMessage(chatId, "GREEN SG ✅ (" + firstNum +")\n"+greens+" x "+reds);
               } 
           }
           if(consecutivePar === 4){
             secondNum = lista[0];
             if(secondNum % 2!==0){
-              bot.sendMessage(chatId, "GREEN G1 ✅ (" + firstNum +" | " + secondNum +")");
+              greens++;
+              bot.sendMessage(chatId, "GREEN G1 ✅ (" + firstNum +" | " + secondNum +")\n"+greens+" x "+reds);
             }
           }
           if(consecutivePar === 5){
             const threeNum = lista[0];
             if(threeNum % 2!==0){
-              bot.sendMessage(chatId, "GREEN G2 ✅ (" + firstNum +" | " + secondNum +" | " + threeNum +")");
+              greens++
+              bot.sendMessage(chatId, "GREEN G2 ✅ (" + firstNum +" | " + secondNum +" | " + threeNum +")\n"+greens+" x "+reds);
             }else{
-              bot.sendMessage(chatId,"RED 🔻(" + firstNum +" | " + secondNum +" | " + threeNum +")");
+              reds++;
+              bot.sendMessage(chatId,"RED 🔻(" + firstNum +" | " + secondNum +" | " + threeNum +")\n"+greens+" x "+reds);
             }
           }
           if(consecutiveImpar === 3){
             firstNum = lista[0];
             if(firstNum % 2===0){
-              bot.sendMessage(chatId, "GREEN SG ✅ (" + firstNum +")");
+              greens++
+              bot.sendMessage(chatId, "GREEN SG ✅ (" + firstNum +")\n"+greens+" x "+reds);
             } 
         }
         if(consecutiveImpar === 4){
           secondNum = lista[0];
           if(secondNum % 2===0){
-            bot.sendMessage(chatId, "GREEN G1 ✅ (" + firstNum +" | " + secondNum +")");
+            greens++;
+            bot.sendMessage(chatId, "GREEN G1 ✅ (" + firstNum +" | " + secondNum +")\n"+greens+" x "+reds);
           }
         }
         if(consecutiveImpar === 5){
           const threeNum = lista[0];
           if(threeNum % 2===0){
-            bot.sendMessage(chatId, "GREEN G2 ✅ (" + firstNum +" | " + secondNum +" | " + threeNum +")");
+            greens++
+            bot.sendMessage(chatId, "GREEN G2 ✅ (" + firstNum +" | " + secondNum +" | " + threeNum +")\n"+greens+" x "+reds);
           }else{
-            bot.sendMessage(chatId,"RED 🔻(" + firstNum +" | " + secondNum +" | " + threeNum +")");
+            reds++;
+            bot.sendMessage(chatId,"RED 🔻(" + firstNum +" | " + secondNum +" | " + threeNum +")\n"+greens+" x "+reds);
           }
         }
         if (lista[0] % 2 === 0 && lista[0] !== '0') {
